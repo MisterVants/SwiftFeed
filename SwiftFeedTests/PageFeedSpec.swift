@@ -54,7 +54,7 @@ fileprivate final class SearchAPIMock: SearchAPI {
     
     private func makeResult() -> Result<[Repository], Error> {
         shouldFail ?
-            .failure(NSError(domain: "test error", code: -1, userInfo: nil)) :
+            .failure(NSError.wildcard) :
             Result { try TestDataLoader.loadSearchRepositoriesData().items }
     }
 }
