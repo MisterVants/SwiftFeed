@@ -25,6 +25,9 @@
 		76CA8DF224D8B95B00DE65EE /* RepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8DF124D8B95B00DE65EE /* RepositoryCell.swift */; };
 		76CA8E1624D8C60200DE65EE /* TypeDescriptionExpressible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E1524D8C60200DE65EE /* TypeDescriptionExpressible.swift */; };
 		76CA8E1824D8C62200DE65EE /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E1724D8C62200DE65EE /* UITableView+Extension.swift */; };
+		76CA8E1A24D8D38B00DE65EE /* PageFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E1924D8D38B00DE65EE /* PageFeed.swift */; };
+		76CA8E1C24D8FB0D00DE65EE /* PageFeedSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E1B24D8FB0D00DE65EE /* PageFeedSpec.swift */; };
+		76CA8E1E24D9BE3100DE65EE /* GitHubSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E1D24D9BE3100DE65EE /* GitHubSearch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +75,9 @@
 		76CA8DF124D8B95B00DE65EE /* RepositoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCell.swift; sourceTree = "<group>"; };
 		76CA8E1524D8C60200DE65EE /* TypeDescriptionExpressible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeDescriptionExpressible.swift; sourceTree = "<group>"; };
 		76CA8E1724D8C62200DE65EE /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		76CA8E1924D8D38B00DE65EE /* PageFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageFeed.swift; sourceTree = "<group>"; };
+		76CA8E1B24D8FB0D00DE65EE /* PageFeedSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageFeedSpec.swift; sourceTree = "<group>"; };
+		76CA8E1D24D9BE3100DE65EE /* GitHubSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubSearch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				76CA8DBF24D863D500DE65EE /* SwiftFeedTests.swift */,
+				76CA8E1B24D8FB0D00DE65EE /* PageFeedSpec.swift */,
 				76CA8DDE24D8784900DE65EE /* TestHelpers */,
 				76CA8DD724D8726400DE65EE /* Data */,
 				76CA8DC124D863D500DE65EE /* Info.plist */,
@@ -159,6 +166,8 @@
 		76CA8DD524D8715700DE65EE /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				76CA8E1924D8D38B00DE65EE /* PageFeed.swift */,
+				76CA8E1D24D9BE3100DE65EE /* GitHubSearch.swift */,
 				76CA8DD624D871F700DE65EE /* Models */,
 			);
 			path = Domain;
@@ -309,6 +318,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76CA8E1A24D8D38B00DE65EE /* PageFeed.swift in Sources */,
 				76CA8DDD24D8768600DE65EE /* SearchDTO.swift in Sources */,
 				76CA8DF024D8B93100DE65EE /* InfiniteFeedView.swift in Sources */,
 				76CA8E1824D8C62200DE65EE /* UITableView+Extension.swift in Sources */,
@@ -317,6 +327,7 @@
 				76CA8DAB24D863D000DE65EE /* SceneDelegate.swift in Sources */,
 				76CA8DDB24D8737D00DE65EE /* Repository.swift in Sources */,
 				76CA8E1624D8C60200DE65EE /* TypeDescriptionExpressible.swift in Sources */,
+				76CA8E1E24D9BE3100DE65EE /* GitHubSearch.swift in Sources */,
 				76CA8DF224D8B95B00DE65EE /* RepositoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,6 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				76CA8DE024D8797900DE65EE /* TestDataLoader.swift in Sources */,
+				76CA8E1C24D8FB0D00DE65EE /* PageFeedSpec.swift in Sources */,
 				76CA8DC024D863D500DE65EE /* SwiftFeedTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
