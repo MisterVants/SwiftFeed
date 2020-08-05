@@ -22,7 +22,7 @@ class RepositoryCell: UITableViewCell {
     
     private let avatarView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "placeholder-avatar")
+        imageView.image = UIImage(asset: .defaultAvatar)
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 40
         return imageView
@@ -30,7 +30,7 @@ class RepositoryCell: UITableViewCell {
     
     private let starIcon: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "octicon-star")?.withRenderingMode(.alwaysTemplate)
+        imageView.image = UIImage(asset: .iconStar)?.withRenderingMode(.alwaysTemplate)
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -87,7 +87,7 @@ class RepositoryCell: UITableViewCell {
         titleLabel.text = repository.name
         authorLabel.text = repository.author
         starCountLabel.text = repository.starCount
-        avatarView.image = UIImage(named: "placeholder-avatar")
+        avatarView.image = UIImage(asset: .defaultAvatar)
         
         guard let urlString = repository.avatarUrl else { return }
         ImageLoader.downloadImage(from: URL(string: urlString)) { [weak self] image in

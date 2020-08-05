@@ -52,6 +52,8 @@
 		76CA8E5924DB670F00DE65EE /* Montserrat-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 76CA8E5724DB670F00DE65EE /* Montserrat-Regular.otf */; };
 		76CA8E5C24DB67EA00DE65EE /* UILabel+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E5B24DB67EA00DE65EE /* UILabel+Style.swift */; };
 		76CA8E5E24DB757400DE65EE /* UIFont+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E5D24DB757400DE65EE /* UIFont+Style.swift */; };
+		76CA8E6024DB78EA00DE65EE /* UIImage+Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E5F24DB78EA00DE65EE /* UIImage+Assets.swift */; };
+		76CA8E6224DB798400DE65EE /* ImageAssetSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E6124DB798400DE65EE /* ImageAssetSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +128,8 @@
 		76CA8E5724DB670F00DE65EE /* Montserrat-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.otf"; sourceTree = "<group>"; };
 		76CA8E5B24DB67EA00DE65EE /* UILabel+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Style.swift"; sourceTree = "<group>"; };
 		76CA8E5D24DB757400DE65EE /* UIFont+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Style.swift"; sourceTree = "<group>"; };
+		76CA8E5F24DB78EA00DE65EE /* UIImage+Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Assets.swift"; sourceTree = "<group>"; };
+		76CA8E6124DB798400DE65EE /* ImageAssetSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAssetSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +196,7 @@
 				76CA8E3C24DB037700DE65EE /* RequestResolvingSpec.swift */,
 				76CA8E2424DA007D00DE65EE /* ResponseSpec.swift */,
 				76CA8E4D24DB4DD400DE65EE /* FormatterSpec.swift */,
+				76CA8E6124DB798400DE65EE /* ImageAssetSpec.swift */,
 				76CA8DDE24D8784900DE65EE /* TestHelpers */,
 				76CA8DD724D8726400DE65EE /* Data */,
 				76CA8DC124D863D500DE65EE /* Info.plist */,
@@ -325,6 +330,7 @@
 			children = (
 				76CA8E5B24DB67EA00DE65EE /* UILabel+Style.swift */,
 				76CA8E5D24DB757400DE65EE /* UIFont+Style.swift */,
+				76CA8E5F24DB78EA00DE65EE /* UIImage+Assets.swift */,
 			);
 			path = Style;
 			sourceTree = "<group>";
@@ -448,6 +454,7 @@
 				76CA8E2B24DAFE0D00DE65EE /* URL+Convertible.swift in Sources */,
 				76CA8E4124DB1AD400DE65EE /* Environment.swift in Sources */,
 				76CA8E3F24DB130400DE65EE /* SearchAPI.swift in Sources */,
+				76CA8E6024DB78EA00DE65EE /* UIImage+Assets.swift in Sources */,
 				76CA8E4A24DB40A500DE65EE /* GitHubRepository.swift in Sources */,
 				76CA8DAB24D863D000DE65EE /* SceneDelegate.swift in Sources */,
 				76CA8E3724DB028400DE65EE /* Pagination.swift in Sources */,
@@ -473,6 +480,7 @@
 				76CA8E3D24DB037700DE65EE /* RequestResolvingSpec.swift in Sources */,
 				76CA8E1C24D8FB0D00DE65EE /* PageFeedSpec.swift in Sources */,
 				76CA8E4E24DB4DD400DE65EE /* FormatterSpec.swift in Sources */,
+				76CA8E6224DB798400DE65EE /* ImageAssetSpec.swift in Sources */,
 				76CA8E2724DA017D00DE65EE /* NetworkError+Extension.swift in Sources */,
 				76CA8E2524DA007D00DE65EE /* ResponseSpec.swift in Sources */,
 			);
