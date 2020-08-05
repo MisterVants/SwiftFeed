@@ -14,22 +14,27 @@ protocol PageFeedDelegate: AnyObject {
 
 class PageFeed {
     
-    static let maximumResultsPerPage = 100
-    static let defaultResultsPerPage = 30
-    
     weak var delegate: PageFeedDelegate?
     
     private(set) var items: [Repository] = []
+    
+    var programmingLanguage: String = SearchAPI.defaultLanguageToQuery
+    private(set) var resultsPerPage: Int
     private(set) var currentPage: Int
     var nextPage: Int { currentPage + 1 }
     
-    private let searchAPI: SearchAPI
+    private let searchAPI: SearchService
     private let callbackQueue: DispatchQueue
     
     private var cancellable: Cancellable?
     
-    init(searchAPI: SearchAPI = GitHubSearch(), delegateQueue: DispatchQueue = .main) {
+    init(
+        resultsPerPage: Int = SearchAPI.defaultPageSize,
+        searchAPI: SearchService = GitHubClient(),
+        delegateQueue: DispatchQueue = .main)
+    {
         self.currentPage = 0
+        self.resultsPerPage = resultsPerPage
         self.searchAPI = searchAPI
         self.callbackQueue = delegateQueue
     }
@@ -42,7 +47,13 @@ class PageFeed {
             guard cancellable == nil else { return }
         }
         
-        cancellable = searchAPI.getRepositories { result in
+        cancellable = searchAPI.getRepositories(
+            matching: SearchAPI.languageQuery(for: programmingLanguage),
+            sortBy: .numberOfStars,
+            order: .descending,
+            page: resetPagination ? 1 : nextPage,
+            resultsPerPage: resultsPerPage)
+        { result in
             switch result {
             case .success(let repositories):
                 self.callbackQueue.async {

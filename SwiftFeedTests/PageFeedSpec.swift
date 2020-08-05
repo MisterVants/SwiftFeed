@@ -29,25 +29,40 @@ fileprivate final class PageFeedDelegateMock: PageFeedDelegate {
     }
 }
 
-fileprivate final class SearchAPIMock: SearchAPI {
+fileprivate class SimpleCancellable: Cancellable {
+    private(set) var isCancelled = false
+    func cancel() {
+        isCancelled = true
+    }
+}
+
+fileprivate final class SearchServiceMock: SearchService {
     
     var completeAutomatically: Bool = true
     var shouldFail: Bool = false
     
+    private(set) var cachedCancellable: SimpleCancellable?
     private(set) var callsReceived: Int = 0
-    private(set) var cachedCancellable: Cancellable?
+    private(set) var lastPageRequested: Int = -1
     
-    func getRepositories(completion: @escaping (Result<[Repository], Error>) -> Void) -> Cancellable {
+    func getRepositories(
+        matching query: String,
+        sortBy sortingRule: SearchAPI.Sorting.Repository?,
+        order: SearchAPI.Ordering?,
+        page: Int,
+        resultsPerPage: Int,
+        completion: @escaping (Result<[Repository], Error>) -> Void
+    ) -> Cancellable?
+    {
         callsReceived += 1
-        
+        lastPageRequested = page
         if completeAutomatically {
             let result = makeResult()
             DispatchQueue.global().async {
                 completion(result)
             }
         }
-        
-        let cancelToken = Cancellable()
+        let cancelToken = SimpleCancellable()
         cachedCancellable = cancelToken
         return cancelToken
     }
@@ -76,7 +91,7 @@ final class PageFeedSpec: QuickSpec {
             
             context("initialization") {
                 it("starts on a fresh state") {
-                    feed = PageFeed(searchAPI: SearchAPIMock())
+                    feed = PageFeed(searchAPI: SearchServiceMock())
                     expect(feed.items).to(beEmpty())
                     expect(feed.nextPage).to(equal(1))
                 }
@@ -89,7 +104,7 @@ final class PageFeedSpec: QuickSpec {
                 context("success callback") {
                     
                     beforeEach {
-                        feed = PageFeed(searchAPI: SearchAPIMock())
+                        feed = PageFeed(searchAPI: SearchServiceMock())
                         feed.delegate = testDelegate
                     }
                     
@@ -121,7 +136,7 @@ final class PageFeedSpec: QuickSpec {
                 context("failure callback") {
                     
                     beforeEach {
-                        let apiMock = SearchAPIMock()
+                        let apiMock = SearchServiceMock()
                         apiMock.shouldFail = true
                         feed = PageFeed(searchAPI: apiMock)
                         feed.delegate = testDelegate
@@ -152,12 +167,12 @@ final class PageFeedSpec: QuickSpec {
                 
                 // MARK: Pagination Reset Tests
                 
-                context("reseting pagination") {
+                context("reseting pagination") { // RESET SHOULD ASK FOR PAGE 1
                     
-                    var apiMock: SearchAPIMock!
+                    var apiMock: SearchServiceMock!
                     
                     beforeEach {
-                        apiMock = SearchAPIMock()
+                        apiMock = SearchServiceMock()
                         feed = PageFeed(searchAPI: apiMock, delegateQueue: DispatchQueue(label: "test-queue", qos: .background))
                         feed.delegate = testDelegate
                         
@@ -180,6 +195,7 @@ final class PageFeedSpec: QuickSpec {
                                 done()
                             }
                             feed.loadNextPage(resetPagination: true)
+                            expect(apiMock.lastPageRequested).to(equal(1))
                         }
                     }
                     
@@ -195,6 +211,7 @@ final class PageFeedSpec: QuickSpec {
                                 done()
                             }
                             feed.loadNextPage(resetPagination: true)
+                            expect(apiMock.lastPageRequested).to(equal(1))
                         }
                     }
                     
@@ -213,10 +230,10 @@ final class PageFeedSpec: QuickSpec {
                 
                 context("load request management") {
                     
-                    var apiMock: SearchAPIMock!
+                    var apiMock: SearchServiceMock!
                     
                     beforeEach {
-                        apiMock = SearchAPIMock()
+                        apiMock = SearchServiceMock()
                         feed = PageFeed(searchAPI: apiMock)
                         feed.delegate = testDelegate
                     }

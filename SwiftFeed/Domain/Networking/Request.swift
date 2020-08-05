@@ -26,12 +26,8 @@ extension Request: URLConvertible, URLRequestConvertible {
     }
     
     func asURLRequest() throws -> URLRequest {
-        do {
-            var request = URLRequest(url: try self.asURL())
-            request.httpMethod = endpoint.method.rawValue
-            return request
-        } catch {
-            throw error
-        }
+        var request = URLRequest(url: try self.asURL())
+        request.httpMethod = endpoint.method.rawValue
+        return request
     }
 }
