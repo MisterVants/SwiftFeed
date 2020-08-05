@@ -48,6 +48,10 @@
 		76CA8E4E24DB4DD400DE65EE /* FormatterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E4D24DB4DD400DE65EE /* FormatterSpec.swift */; };
 		76CA8E5124DB50CA00DE65EE /* LoadingFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E5024DB50CA00DE65EE /* LoadingFooterView.swift */; };
 		76CA8E5424DB640C00DE65EE /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E5324DB640C00DE65EE /* ImageLoader.swift */; };
+		76CA8E5824DB670F00DE65EE /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 76CA8E5624DB670F00DE65EE /* Montserrat-Bold.otf */; };
+		76CA8E5924DB670F00DE65EE /* Montserrat-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 76CA8E5724DB670F00DE65EE /* Montserrat-Regular.otf */; };
+		76CA8E5C24DB67EA00DE65EE /* UILabel+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E5B24DB67EA00DE65EE /* UILabel+Style.swift */; };
+		76CA8E5E24DB757400DE65EE /* UIFont+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E5D24DB757400DE65EE /* UIFont+Style.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +122,10 @@
 		76CA8E4D24DB4DD400DE65EE /* FormatterSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterSpec.swift; sourceTree = "<group>"; };
 		76CA8E5024DB50CA00DE65EE /* LoadingFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingFooterView.swift; sourceTree = "<group>"; };
 		76CA8E5324DB640C00DE65EE /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		76CA8E5624DB670F00DE65EE /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
+		76CA8E5724DB670F00DE65EE /* Montserrat-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.otf"; sourceTree = "<group>"; };
+		76CA8E5B24DB67EA00DE65EE /* UILabel+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Style.swift"; sourceTree = "<group>"; };
+		76CA8E5D24DB757400DE65EE /* UIFont+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Style.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,9 +173,11 @@
 				76CA8DA824D863D000DE65EE /* AppDelegate.swift */,
 				76CA8DAA24D863D000DE65EE /* SceneDelegate.swift */,
 				76CA8E4024DB1AD400DE65EE /* Environment.swift */,
+				76CA8E5A24DB67D600DE65EE /* Style */,
 				76CA8E1424D8C59600DE65EE /* Utilities */,
 				76CA8DD424D8714E00DE65EE /* Presentation */,
 				76CA8DD524D8715700DE65EE /* Domain */,
+				76CA8E5524DB66F800DE65EE /* Fonts */,
 				76CA8DB124D863D500DE65EE /* Assets.xcassets */,
 				76CA8DB324D863D500DE65EE /* LaunchScreen.storyboard */,
 				76CA8DB624D863D500DE65EE /* Info.plist */,
@@ -301,6 +311,24 @@
 			path = "UI Models";
 			sourceTree = "<group>";
 		};
+		76CA8E5524DB66F800DE65EE /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				76CA8E5624DB670F00DE65EE /* Montserrat-Bold.otf */,
+				76CA8E5724DB670F00DE65EE /* Montserrat-Regular.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		76CA8E5A24DB67D600DE65EE /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				76CA8E5B24DB67EA00DE65EE /* UILabel+Style.swift */,
+				76CA8E5D24DB757400DE65EE /* UIFont+Style.swift */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -384,6 +412,8 @@
 			files = (
 				76CA8DB524D863D500DE65EE /* LaunchScreen.storyboard in Resources */,
 				76CA8DB224D863D500DE65EE /* Assets.xcassets in Resources */,
+				76CA8E5824DB670F00DE65EE /* Montserrat-Bold.otf in Resources */,
+				76CA8E5924DB670F00DE65EE /* Montserrat-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,9 +437,11 @@
 				76CA8E3924DB02D200DE65EE /* SearchEndpoint.swift in Sources */,
 				76CA8E4C24DB4D9300DE65EE /* NumberFormatter+Extension.swift in Sources */,
 				76CA8DF024D8B93100DE65EE /* InfiniteFeedView.swift in Sources */,
+				76CA8E5E24DB757400DE65EE /* UIFont+Style.swift in Sources */,
 				76CA8E5424DB640C00DE65EE /* ImageLoader.swift in Sources */,
 				76CA8E1824D8C62200DE65EE /* UITableView+Extension.swift in Sources */,
 				76CA8E2124D9FE2100DE65EE /* Response.swift in Sources */,
+				76CA8E5C24DB67EA00DE65EE /* UILabel+Style.swift in Sources */,
 				76CA8DEE24D8B92900DE65EE /* InfiniteFeedViewController.swift in Sources */,
 				76CA8DA924D863D000DE65EE /* AppDelegate.swift in Sources */,
 				76CA8E2D24DAFE4E00DE65EE /* Request.swift in Sources */,
