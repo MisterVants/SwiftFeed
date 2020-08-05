@@ -33,6 +33,13 @@
 		76CA8E2524DA007D00DE65EE /* ResponseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E2424DA007D00DE65EE /* ResponseSpec.swift */; };
 		76CA8E2724DA017D00DE65EE /* NetworkError+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E2624DA017D00DE65EE /* NetworkError+Extension.swift */; };
 		76CA8E2924DA02E300DE65EE /* Result+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E2824DA02E300DE65EE /* Result+Extension.swift */; };
+		76CA8E2B24DAFE0D00DE65EE /* URL+Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E2A24DAFE0D00DE65EE /* URL+Convertible.swift */; };
+		76CA8E2D24DAFE4E00DE65EE /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E2C24DAFE4E00DE65EE /* Request.swift */; };
+		76CA8E2F24DAFEE400DE65EE /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E2E24DAFEE400DE65EE /* Endpoint.swift */; };
+		76CA8E3324DAFFB300DE65EE /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E3224DAFFB300DE65EE /* HTTPMethod.swift */; };
+		76CA8E3724DB028400DE65EE /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E3624DB028400DE65EE /* Pagination.swift */; };
+		76CA8E3924DB02D200DE65EE /* SearchEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E3824DB02D200DE65EE /* SearchEndpoint.swift */; };
+		76CA8E3D24DB037700DE65EE /* RequestResolvingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E3C24DB037700DE65EE /* RequestResolvingSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +95,13 @@
 		76CA8E2424DA007D00DE65EE /* ResponseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseSpec.swift; sourceTree = "<group>"; };
 		76CA8E2624DA017D00DE65EE /* NetworkError+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkError+Extension.swift"; sourceTree = "<group>"; };
 		76CA8E2824DA02E300DE65EE /* Result+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+Extension.swift"; sourceTree = "<group>"; };
+		76CA8E2A24DAFE0D00DE65EE /* URL+Convertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Convertible.swift"; sourceTree = "<group>"; };
+		76CA8E2C24DAFE4E00DE65EE /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		76CA8E2E24DAFEE400DE65EE /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		76CA8E3224DAFFB300DE65EE /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		76CA8E3624DB028400DE65EE /* Pagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
+		76CA8E3824DB02D200DE65EE /* SearchEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEndpoint.swift; sourceTree = "<group>"; };
+		76CA8E3C24DB037700DE65EE /* RequestResolvingSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResolvingSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +163,7 @@
 			children = (
 				76CA8DBF24D863D500DE65EE /* SwiftFeedTests.swift */,
 				76CA8E1B24D8FB0D00DE65EE /* PageFeedSpec.swift */,
+				76CA8E3C24DB037700DE65EE /* RequestResolvingSpec.swift */,
 				76CA8E2424DA007D00DE65EE /* ResponseSpec.swift */,
 				76CA8DDE24D8784900DE65EE /* TestHelpers */,
 				76CA8DD724D8726400DE65EE /* Data */,
@@ -188,8 +203,10 @@
 		76CA8DD624D871F700DE65EE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				76CA8E3824DB02D200DE65EE /* SearchEndpoint.swift */,
 				76CA8DDA24D8737D00DE65EE /* Repository.swift */,
 				76CA8DDC24D8768600DE65EE /* SearchDTO.swift */,
+				76CA8E3624DB028400DE65EE /* Pagination.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -234,8 +251,12 @@
 		76CA8E1F24D9FE1600DE65EE /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				76CA8E2E24DAFEE400DE65EE /* Endpoint.swift */,
+				76CA8E2C24DAFE4E00DE65EE /* Request.swift */,
 				76CA8E2024D9FE2100DE65EE /* Response.swift */,
+				76CA8E3224DAFFB300DE65EE /* HTTPMethod.swift */,
 				76CA8E2224DA003900DE65EE /* NetworkError.swift */,
+				76CA8E2A24DAFE0D00DE65EE /* URL+Convertible.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -343,13 +364,19 @@
 			files = (
 				76CA8E1A24D8D38B00DE65EE /* PageFeed.swift in Sources */,
 				76CA8DDD24D8768600DE65EE /* SearchDTO.swift in Sources */,
+				76CA8E3924DB02D200DE65EE /* SearchEndpoint.swift in Sources */,
 				76CA8DF024D8B93100DE65EE /* InfiniteFeedView.swift in Sources */,
 				76CA8E1824D8C62200DE65EE /* UITableView+Extension.swift in Sources */,
 				76CA8E2124D9FE2100DE65EE /* Response.swift in Sources */,
 				76CA8DEE24D8B92900DE65EE /* InfiniteFeedViewController.swift in Sources */,
 				76CA8DA924D863D000DE65EE /* AppDelegate.swift in Sources */,
+				76CA8E2D24DAFE4E00DE65EE /* Request.swift in Sources */,
+				76CA8E2B24DAFE0D00DE65EE /* URL+Convertible.swift in Sources */,
 				76CA8DAB24D863D000DE65EE /* SceneDelegate.swift in Sources */,
+				76CA8E3724DB028400DE65EE /* Pagination.swift in Sources */,
+				76CA8E2F24DAFEE400DE65EE /* Endpoint.swift in Sources */,
 				76CA8DDB24D8737D00DE65EE /* Repository.swift in Sources */,
+				76CA8E3324DAFFB300DE65EE /* HTTPMethod.swift in Sources */,
 				76CA8E1624D8C60200DE65EE /* TypeDescriptionExpressible.swift in Sources */,
 				76CA8E2324DA003900DE65EE /* NetworkError.swift in Sources */,
 				76CA8E1E24D9BE3100DE65EE /* GitHubSearch.swift in Sources */,
@@ -363,6 +390,7 @@
 			files = (
 				76CA8E2924DA02E300DE65EE /* Result+Extension.swift in Sources */,
 				76CA8DE024D8797900DE65EE /* TestDataLoader.swift in Sources */,
+				76CA8E3D24DB037700DE65EE /* RequestResolvingSpec.swift in Sources */,
 				76CA8E1C24D8FB0D00DE65EE /* PageFeedSpec.swift in Sources */,
 				76CA8DC024D863D500DE65EE /* SwiftFeedTests.swift in Sources */,
 				76CA8E2724DA017D00DE65EE /* NetworkError+Extension.swift in Sources */,

@@ -8,6 +8,7 @@
 import Foundation
 
 enum NetworkError: Error {
+    case invalidURL(url: URLConvertible)
     case dataTaskError(Error)
     case dataTaskCancelled
     case noResponse

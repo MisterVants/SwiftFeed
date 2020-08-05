@@ -231,6 +231,7 @@ final class PageFeedSpec: QuickSpec {
                     it("allows load request after success") {
                         waitUntil { done in
                             testDelegate.completion = {
+                                apiMock.completeAutomatically = false // Disable completion to prevent a recursive callback
                                 feed.loadNextPage()
                                 expect(apiMock.callsReceived).to(beGreaterThan(1))
                                 done()
@@ -243,6 +244,7 @@ final class PageFeedSpec: QuickSpec {
                         apiMock.shouldFail = true
                         waitUntil { done in
                             testDelegate.completion = {
+                                apiMock.completeAutomatically = false // Disable completion to prevent a recursive callback (again)
                                 feed.loadNextPage()
                                 expect(apiMock.callsReceived).to(beGreaterThan(1))
                                 done()
