@@ -47,6 +47,7 @@
 		76CA8E4C24DB4D9300DE65EE /* NumberFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E4B24DB4D9300DE65EE /* NumberFormatter+Extension.swift */; };
 		76CA8E4E24DB4DD400DE65EE /* FormatterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E4D24DB4DD400DE65EE /* FormatterSpec.swift */; };
 		76CA8E5124DB50CA00DE65EE /* LoadingFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E5024DB50CA00DE65EE /* LoadingFooterView.swift */; };
+		76CA8E5424DB640C00DE65EE /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E5324DB640C00DE65EE /* ImageLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		76CA8E4B24DB4D9300DE65EE /* NumberFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Extension.swift"; sourceTree = "<group>"; };
 		76CA8E4D24DB4DD400DE65EE /* FormatterSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterSpec.swift; sourceTree = "<group>"; };
 		76CA8E5024DB50CA00DE65EE /* LoadingFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingFooterView.swift; sourceTree = "<group>"; };
+		76CA8E5324DB640C00DE65EE /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +215,7 @@
 				76CA8E1924D8D38B00DE65EE /* PageFeed.swift */,
 				76CA8E3E24DB130400DE65EE /* SearchAPI.swift */,
 				76CA8E1D24D9BE3100DE65EE /* GitHubClient.swift */,
+				76CA8E5324DB640C00DE65EE /* ImageLoader.swift */,
 				76CA8E1F24D9FE1600DE65EE /* Networking */,
 				76CA8DD624D871F700DE65EE /* Models */,
 			);
@@ -404,6 +407,7 @@
 				76CA8E3924DB02D200DE65EE /* SearchEndpoint.swift in Sources */,
 				76CA8E4C24DB4D9300DE65EE /* NumberFormatter+Extension.swift in Sources */,
 				76CA8DF024D8B93100DE65EE /* InfiniteFeedView.swift in Sources */,
+				76CA8E5424DB640C00DE65EE /* ImageLoader.swift in Sources */,
 				76CA8E1824D8C62200DE65EE /* UITableView+Extension.swift in Sources */,
 				76CA8E2124D9FE2100DE65EE /* Response.swift in Sources */,
 				76CA8DEE24D8B92900DE65EE /* InfiniteFeedViewController.swift in Sources */,

@@ -87,6 +87,16 @@ class RepositoryCell: UITableViewCell {
         titleLabel.text = repository.name
         authorLabel.text = repository.author
         starCountLabel.text = repository.starCount
+        avatarView.image = UIImage(named: "placeholder-avatar")
+        
+        guard let urlString = repository.avatarUrl else { return }
+        ImageLoader.downloadImage(from: URL(string: urlString)) { [weak self] image in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                guard let image = image, self.model?.avatarUrl == urlString else { return }
+                self.avatarView.image = image
+            }
+        }
     }
     
     required init?(coder: NSCoder) {

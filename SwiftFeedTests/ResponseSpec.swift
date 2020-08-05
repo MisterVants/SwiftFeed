@@ -24,6 +24,7 @@ final class ResponseSpec: QuickSpec {
         describe("network response") {
             
             context("error cases") {
+                
                 it("init with error should result in an error") {
                     let response: Response<String> = Response(request: request, error: NSError.wildcard)
                     expect(response.request).toNot(beNil())
@@ -54,8 +55,15 @@ final class ResponseSpec: QuickSpec {
             }
             
             context("success cases") {
+                
                 it("init with valid decodable data should result in success") {
                     let response: Response<String> = Response(request: request, data: validStringData, response: successResponse, error: nil)
+                    let decoded = try? response.result.get()
+                    expect(decoded).toNot(beNil())
+                }
+                
+                it("init without request but valid data should result in success") {
+                    let response: Response<String> = Response(data: validStringData, response: successResponse, error: nil)
                     let decoded = try? response.result.get()
                     expect(decoded).toNot(beNil())
                 }
