@@ -19,16 +19,15 @@ class InfiniteFeedView: UIView {
         return tableView
     }()
     
-    private lazy var loadingFooter: LoadingFooterView = {
+    private(set) lazy var loadingFooter: LoadingFooterView = {
         LoadingFooterView(frame: CGRect(x: 0, y: 0, width: bounds.width, height: 100))
     }()
     
-    private let refreshControl = UIRefreshControl()
+    let refreshControl = UIRefreshControl()
     
     init() {
         super.init(frame: .zero)
         layoutView()
-        loadingFooter.activityIndicator.startAnimating()
     }
     
     private func layoutView() {
@@ -42,26 +41,6 @@ class InfiniteFeedView: UIView {
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor)]
         
         NSLayoutConstraint.activate(tableConstraints)
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-}
-
-fileprivate class LoadingFooterView: UIView {
-    
-    let activityIndicator = UIActivityIndicatorView(style: .medium)
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        addSubview(activityIndicator)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor)
-        ])
     }
     
     required init?(coder: NSCoder) {

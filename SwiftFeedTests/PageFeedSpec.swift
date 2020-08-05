@@ -18,8 +18,13 @@ fileprivate final class PageFeedDelegateMock: PageFeedDelegate {
     var didSucceed = false
     var didFail = false
     
+    var lastReceivedPageIndex = -1
+    var lastReceivedIndexPaths: [IndexPath] = []
+    
     func pageFeed(_ feed: PageFeed, didLoadNewItemsAt indexPaths: [IndexPath], onPage pageIndex: Int) {
         didSucceed = true
+        lastReceivedPageIndex = pageIndex
+        lastReceivedIndexPaths = indexPaths
         completion?()
     }
     
@@ -124,6 +129,8 @@ final class PageFeedSpec: QuickSpec {
                         waitUntil { done in
                             testDelegate.completion = {
                                 expect(feed.currentPage).to(equal(indexToFetch))
+                                expect(testDelegate.lastReceivedPageIndex).to(equal(indexToFetch))
+                                expect(testDelegate.lastReceivedIndexPaths).to(containElementSatisfying({ $0.row == feed.items.count - 1 }))
                                 done()
                             }
                             feed.loadNextPage()
@@ -165,9 +172,9 @@ final class PageFeedSpec: QuickSpec {
                     }
                 }
                 
-                // MARK: Pagination Reset Tests
+                // MARK: Pagination Tests
                 
-                context("reseting pagination") { // RESET SHOULD ASK FOR PAGE 1
+                context("pagination") {
                     
                     var apiMock: SearchServiceMock!
                     
@@ -185,44 +192,66 @@ final class PageFeedSpec: QuickSpec {
                         }
                     }
                     
-                    it("refreshes feed on success") {
-                        let initialItemCount = feed.items.count
+                    context("next page") {
                         
-                        waitUntil { done in
-                            testDelegate.completion = {
-                                expect(feed.currentPage).to(equal(1))
-                                expect(feed.items.count).to(beLessThan(initialItemCount))
-                                done()
+                        it("correctly computes new index paths") {
+                            let initialCount = feed.items.count
+                            waitUntil { done in
+                                testDelegate.completion = {
+                                    let receivedIndexPaths = testDelegate.lastReceivedIndexPaths
+                                    expect(receivedIndexPaths).to(haveCount(feed.resultsPerPage))
+                                    expect(receivedIndexPaths).to(allPass({ $0!.row > initialCount - 1 }))
+                                    expect(receivedIndexPaths).to(containElementSatisfying({ $0.row == feed.items.count - 1 }))
+                                    done()
+                                }
+                                feed.loadNextPage()
                             }
-                            feed.loadNextPage(resetPagination: true)
-                            expect(apiMock.lastPageRequested).to(equal(1))
                         }
                     }
                     
-                    it("remains unchanged on failure") {
-                        apiMock.shouldFail = true
-                        let initialItemCount = feed.items.count
-                        let initialPageIndex = feed.currentPage
+                    context("refresh") {
                         
-                        waitUntil { done in
-                            testDelegate.completion = {
-                                expect(feed.currentPage).to(equal(initialPageIndex))
-                                expect(feed.items.count).to(equal(initialItemCount))
-                                done()
+                        it("resets feed on success") {
+                            let initialItemCount = feed.items.count
+                            
+                            waitUntil { done in
+                                testDelegate.completion = {
+                                    expect(feed.currentPage).to(equal(1))
+                                    expect(feed.items.count).to(beLessThan(initialItemCount))
+                                    expect(testDelegate.lastReceivedPageIndex).to(equal(1))
+                                    expect(testDelegate.lastReceivedIndexPaths).to(containElementSatisfying({ $0.row == 0 }))
+                                    done()
+                                }
+                                feed.loadNextPage(resetPagination: true)
+                                expect(apiMock.lastPageRequested).to(equal(1))
                             }
-                            feed.loadNextPage(resetPagination: true)
-                            expect(apiMock.lastPageRequested).to(equal(1))
                         }
-                    }
-                    
-                    it("cancels any ongoing request") {
-                        apiMock.completeAutomatically = false
                         
-                        feed.loadNextPage()
-                        let cancellable = apiMock.cachedCancellable
-                        feed.loadNextPage(resetPagination: true)
+                        it("remains unchanged on failure") {
+                            apiMock.shouldFail = true
+                            let initialItemCount = feed.items.count
+                            let initialPageIndex = feed.currentPage
+                            
+                            waitUntil { done in
+                                testDelegate.completion = {
+                                    expect(feed.currentPage).to(equal(initialPageIndex))
+                                    expect(feed.items.count).to(equal(initialItemCount))
+                                    done()
+                                }
+                                feed.loadNextPage(resetPagination: true)
+                                expect(apiMock.lastPageRequested).to(equal(1))
+                            }
+                        }
                         
-                        expect(cancellable?.isCancelled).to(beTrue())
+                        it("cancels any ongoing request") {
+                            apiMock.completeAutomatically = false
+                            
+                            feed.loadNextPage()
+                            let cancellable = apiMock.cachedCancellable
+                            feed.loadNextPage(resetPagination: true)
+                            
+                            expect(cancellable?.isCancelled).to(beTrue())
+                        }
                     }
                 }
                 

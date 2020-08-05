@@ -8,7 +8,14 @@
 import UIKit
 
 class RepositoryCell: UITableViewCell {
-
+    
+    var model: GitHubRepository? {
+        didSet {
+            guard let repository = model else { return }
+            fillView(with: repository)
+        }
+    }
+    
     private let titleLabel = UILabel()
     private let authorLabel = UILabel()
     private let starCountLabel = UILabel()
@@ -32,7 +39,6 @@ class RepositoryCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
         layoutView()
-        mockText()
     }
     
     private func layoutView() {
@@ -77,10 +83,10 @@ class RepositoryCell: UITableViewCell {
         ].flatMap {$0})
     }
     
-    private func mockText() {
-        titleLabel.text = "Repository Name"
-        authorLabel.text = "Author"
-        starCountLabel.text = "99.999"
+    private func fillView(with repository: GitHubRepository) {
+        titleLabel.text = repository.name
+        authorLabel.text = repository.author
+        starCountLabel.text = repository.starCount
     }
     
     required init?(coder: NSCoder) {

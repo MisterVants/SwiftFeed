@@ -25,7 +25,6 @@ class PageFeed {
     
     private let searchAPI: SearchService
     private let callbackQueue: DispatchQueue
-    
     private var cancellable: Cancellable?
     
     init(
@@ -46,36 +45,40 @@ class PageFeed {
         } else {
             guard cancellable == nil else { return }
         }
+        let targetPageIndex = resetPagination ? 1 : nextPage
         
         cancellable = searchAPI.getRepositories(
             matching: SearchAPI.languageQuery(for: programmingLanguage),
             sortBy: .numberOfStars,
             order: .descending,
-            page: resetPagination ? 1 : nextPage,
+            page: targetPageIndex,
             resultsPerPage: resultsPerPage)
-        { result in
-            switch result {
-            case .success(let repositories):
-                self.callbackQueue.async {
-                    let currentPage = self.nextPage
-                    self.cancellable = nil
+        { [weak self] result in
+            guard let self = self else { return }
+            self.callbackQueue.async {
+                self.cancellable = nil
+                do {
+                    let newItems = try result.get()
                     if resetPagination {
-                        self.currentPage = 1
                         self.items.removeAll(keepingCapacity: true)
-                        self.items.append(contentsOf: repositories)
-                        self.delegate?.pageFeed(self, didLoadNewItemsAt: [], onPage: currentPage) // TODO: Add tests
-                    } else {
-                        self.currentPage = currentPage
-                        self.items.append(contentsOf: repositories)
-                        self.delegate?.pageFeed(self, didLoadNewItemsAt: [], onPage: currentPage) // TODO: Add tests
                     }
-                }
-            case .failure(let error):
-                self.callbackQueue.async {
-                    self.cancellable = nil
+                    self.items.append(contentsOf: newItems)
+                    self.currentPage = targetPageIndex
+                    let newIndices = IndexPath.computeIndexPaths(ofAppended: newItems, in: self.items)
+                    self.delegate?.pageFeed(self, didLoadNewItemsAt: newIndices, onPage: targetPageIndex)
+                } catch {
                     self.delegate?.pageFeed(self, didFailLoadingWithError: error)
                 }
             }
         }
+    }
+}
+
+fileprivate extension IndexPath {
+    static func computeIndexPaths<T>(ofAppended appendedItems: T, in allItems: T) -> [IndexPath] where T: Collection {
+        let startIndex = allItems.count - appendedItems.count
+        let endIndex = startIndex + appendedItems.count
+        let indexPaths = (startIndex..<endIndex).map { IndexPath(row: $0, section: 0) }
+        return indexPaths
     }
 }
