@@ -54,6 +54,11 @@
 		76CA8E5E24DB757400DE65EE /* UIFont+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E5D24DB757400DE65EE /* UIFont+Style.swift */; };
 		76CA8E6024DB78EA00DE65EE /* UIImage+Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E5F24DB78EA00DE65EE /* UIImage+Assets.swift */; };
 		76CA8E6224DB798400DE65EE /* ImageAssetSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E6124DB798400DE65EE /* ImageAssetSpec.swift */; };
+		76CA8E6424DB7CA900DE65EE /* RateLimitParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E6324DB7CA900DE65EE /* RateLimitParser.swift */; };
+		76CA8E6624DB7E5100DE65EE /* RateLimitParserSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E6524DB7E5100DE65EE /* RateLimitParserSpec.swift */; };
+		76CA8E6824DB7F0500DE65EE /* RateLimitHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E6724DB7F0500DE65EE /* RateLimitHandler.swift */; };
+		76CA8E6A24DB7FB600DE65EE /* RateLimitHandlerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E6924DB7FB600DE65EE /* RateLimitHandlerSpec.swift */; };
+		76CA8E6C24DB802C00DE65EE /* TimeTraveler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA8E6B24DB802C00DE65EE /* TimeTraveler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +135,11 @@
 		76CA8E5D24DB757400DE65EE /* UIFont+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Style.swift"; sourceTree = "<group>"; };
 		76CA8E5F24DB78EA00DE65EE /* UIImage+Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Assets.swift"; sourceTree = "<group>"; };
 		76CA8E6124DB798400DE65EE /* ImageAssetSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAssetSpec.swift; sourceTree = "<group>"; };
+		76CA8E6324DB7CA900DE65EE /* RateLimitParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateLimitParser.swift; sourceTree = "<group>"; };
+		76CA8E6524DB7E5100DE65EE /* RateLimitParserSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateLimitParserSpec.swift; sourceTree = "<group>"; };
+		76CA8E6724DB7F0500DE65EE /* RateLimitHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateLimitHandler.swift; sourceTree = "<group>"; };
+		76CA8E6924DB7FB600DE65EE /* RateLimitHandlerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateLimitHandlerSpec.swift; sourceTree = "<group>"; };
+		76CA8E6B24DB802C00DE65EE /* TimeTraveler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTraveler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +207,8 @@
 				76CA8E2424DA007D00DE65EE /* ResponseSpec.swift */,
 				76CA8E4D24DB4DD400DE65EE /* FormatterSpec.swift */,
 				76CA8E6124DB798400DE65EE /* ImageAssetSpec.swift */,
+				76CA8E6524DB7E5100DE65EE /* RateLimitParserSpec.swift */,
+				76CA8E6924DB7FB600DE65EE /* RateLimitHandlerSpec.swift */,
 				76CA8DDE24D8784900DE65EE /* TestHelpers */,
 				76CA8DD724D8726400DE65EE /* Data */,
 				76CA8DC124D863D500DE65EE /* Info.plist */,
@@ -262,6 +274,7 @@
 				76CA8DDF24D8797900DE65EE /* TestDataLoader.swift */,
 				76CA8E2624DA017D00DE65EE /* NetworkError+Extension.swift */,
 				76CA8E2824DA02E300DE65EE /* Result+Extension.swift */,
+				76CA8E6B24DB802C00DE65EE /* TimeTraveler.swift */,
 			);
 			path = TestHelpers;
 			sourceTree = "<group>";
@@ -296,6 +309,8 @@
 				76CA8E2224DA003900DE65EE /* NetworkError.swift */,
 				76CA8E2A24DAFE0D00DE65EE /* URL+Convertible.swift */,
 				76CA8E4724DB330C00DE65EE /* Cancellable.swift */,
+				76CA8E6324DB7CA900DE65EE /* RateLimitParser.swift */,
+				76CA8E6724DB7F0500DE65EE /* RateLimitHandler.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -449,6 +464,7 @@
 				76CA8E2124D9FE2100DE65EE /* Response.swift in Sources */,
 				76CA8E5C24DB67EA00DE65EE /* UILabel+Style.swift in Sources */,
 				76CA8DEE24D8B92900DE65EE /* InfiniteFeedViewController.swift in Sources */,
+				76CA8E6424DB7CA900DE65EE /* RateLimitParser.swift in Sources */,
 				76CA8DA924D863D000DE65EE /* AppDelegate.swift in Sources */,
 				76CA8E2D24DAFE4E00DE65EE /* Request.swift in Sources */,
 				76CA8E2B24DAFE0D00DE65EE /* URL+Convertible.swift in Sources */,
@@ -463,6 +479,7 @@
 				76CA8DDB24D8737D00DE65EE /* Repository.swift in Sources */,
 				76CA8E3324DAFFB300DE65EE /* HTTPMethod.swift in Sources */,
 				76CA8E1624D8C60200DE65EE /* TypeDescriptionExpressible.swift in Sources */,
+				76CA8E6824DB7F0500DE65EE /* RateLimitHandler.swift in Sources */,
 				76CA8E4524DB1B4700DE65EE /* APIDomain.swift in Sources */,
 				76CA8E2324DA003900DE65EE /* NetworkError.swift in Sources */,
 				76CA8E1E24D9BE3100DE65EE /* GitHubClient.swift in Sources */,
@@ -475,10 +492,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76CA8E6624DB7E5100DE65EE /* RateLimitParserSpec.swift in Sources */,
 				76CA8E2924DA02E300DE65EE /* Result+Extension.swift in Sources */,
 				76CA8DE024D8797900DE65EE /* TestDataLoader.swift in Sources */,
 				76CA8E3D24DB037700DE65EE /* RequestResolvingSpec.swift in Sources */,
 				76CA8E1C24D8FB0D00DE65EE /* PageFeedSpec.swift in Sources */,
+				76CA8E6A24DB7FB600DE65EE /* RateLimitHandlerSpec.swift in Sources */,
+				76CA8E6C24DB802C00DE65EE /* TimeTraveler.swift in Sources */,
 				76CA8E4E24DB4DD400DE65EE /* FormatterSpec.swift in Sources */,
 				76CA8E6224DB798400DE65EE /* ImageAssetSpec.swift in Sources */,
 				76CA8E2724DA017D00DE65EE /* NetworkError+Extension.swift in Sources */,

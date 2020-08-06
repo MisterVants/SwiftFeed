@@ -11,6 +11,7 @@ enum SearchAPI {
     
     static let maximumPageSize = 100
     static let defaultPageSize = 30
+    static let defaultRateLimit = 10
     static let defaultLanguageToQuery = "swift"
     
     static func languageQuery(for language: String) -> String {

@@ -24,9 +24,16 @@ class GitHubClient: SearchService {
     
     private let session: URLSession
     
-    init(apiDomain: APIDomain = GitHubDomain.resolve(), session: URLSession = URLSession(configuration: .default)) {
+    private let rateLimitHandler: RateLimitHandler
+    
+    init(
+        apiDomain: APIDomain = GitHubDomain.resolve(),
+        session: URLSession = URLSession(configuration: .default),
+        rateLimitHandler: RateLimitHandler = RateLimitHandler(rateLimit: SearchAPI.defaultRateLimit))
+    {
         self.apiDomain = apiDomain
         self.session = session
+        self.rateLimitHandler = rateLimitHandler
     }
     
     func getRepositories(
@@ -38,6 +45,10 @@ class GitHubClient: SearchService {
         completion: @escaping (Result<[Repository], Error>) -> Void
     ) -> Cancellable?
     {
+        guard rateLimitHandler.holdRequestToken() else {
+            defer { completion(.failure(NetworkError.rateLimitExceeded)) }
+            return nil
+        }
         let endpoint: SearchAPI.Endpoint = .repositories(
             matching: query,
             sort: sortingRule?.rawValue,
@@ -49,7 +60,12 @@ class GitHubClient: SearchService {
             baseURL: apiDomain,
             endpoint: endpoint)
         
-        return perform(request) { (response: Response<SearchDTO<Repository>>) in
+        return perform(request) { [weak self] (response: Response<SearchDTO<Repository>>) in
+            self?.rateLimitHandler.consumeRequestToken()
+            if let updatedRateLimits = RateLimitParser.parseRateLimitHeaders(from: response.httpHeaders) {
+                print(updatedRateLimits)
+                self?.rateLimitHandler.updateRateLimits(updatedRateLimits)
+            }
             completion(response.result.map { $0.items })
         }
     }

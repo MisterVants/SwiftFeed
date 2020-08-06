@@ -15,4 +15,5 @@ enum NetworkError: Error {
     case badStatusCode(Int)
     case responseDataNil
     case jsonDecodeFailed(Error, Data)
+    case rateLimitExceeded
 }
