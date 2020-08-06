@@ -29,8 +29,14 @@ class InfiniteFeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Swift Feed"
+        navigationItem.title = Localized.navigationTitle
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.font: UIFont.preferredCustomFont(for: .headline, weight: .bold)]
+        navigationController?.navigationBar.largeTitleTextAttributes = [
+            NSAttributedString.Key.font: UIFont.preferredCustomFont(for: .largeTitle, weight: .bold)]
+        
+        feedView?.loadingView.show()
         infiniteFeed.loadNextPage(resetPagination: true)
     }
     
@@ -47,6 +53,7 @@ class InfiniteFeedViewController: UIViewController {
     
     private func stopLoading() {
         feedView?.refreshControl.endRefreshing()
+        feedView?.loadingView.hide()
         feedView?.loadingFooter.hide()
     }
 }
@@ -64,7 +71,14 @@ extension InfiniteFeedViewController: PageFeedDelegate {
     
     func pageFeed(_ feed: PageFeed, didFailLoadingWithError error: Error) {
         stopLoading()
-        // TODO: Handle Error
+        if case .rateLimitExceeded = error as? NetworkError {
+            let alert = UIAlertController(
+                title: Localized.Error.title,
+                message: Localized.Error.message,
+                preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: Localized.Error.action, style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }
 

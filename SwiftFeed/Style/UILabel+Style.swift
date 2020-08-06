@@ -21,8 +21,18 @@ extension UILabel {
         return label
     }
     
+    func text(_ text: String) -> Self {
+        self.text = text
+        return self
+    }
+    
     func lineLimit(_ number: Int) -> Self {
-        numberOfLines = number
+        self.numberOfLines = number
+        return self
+    }
+    
+    func textAlignment(_ alignment: NSTextAlignment) -> Self {
+        self.textAlignment = alignment
         return self
     }
 }

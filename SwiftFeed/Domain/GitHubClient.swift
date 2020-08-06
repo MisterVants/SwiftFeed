@@ -63,7 +63,6 @@ class GitHubClient: SearchService {
         return perform(request) { [weak self] (response: Response<SearchDTO<Repository>>) in
             self?.rateLimitHandler.consumeRequestToken()
             if let updatedRateLimits = RateLimitParser.parseRateLimitHeaders(from: response.httpHeaders) {
-                print(updatedRateLimits)
                 self?.rateLimitHandler.updateRateLimits(updatedRateLimits)
             }
             completion(response.result.map { $0.items })

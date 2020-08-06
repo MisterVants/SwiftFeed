@@ -24,7 +24,7 @@ class RepositoryCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.image = UIImage(asset: .defaultAvatar)
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 40
+        imageView.layer.cornerRadius = Style.thumbnailRadius
         return imageView
     }()
     
@@ -51,28 +51,28 @@ class RepositoryCell: UITableViewCell {
         
         let avatarConstraints = [
             avatarView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            avatarView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            avatarView.widthAnchor.constraint(equalToConstant: 80),
-            avatarView.heightAnchor.constraint(equalToConstant: 80)]
+            avatarView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Spacing.default),
+            avatarView.widthAnchor.constraint(equalToConstant: Style.thumbnailSize.width),
+            avatarView.heightAnchor.constraint(equalToConstant: Style.thumbnailSize.height)]
         
         let titleLabelConstraints = [
             titleLabel.firstBaselineAnchor.constraint(equalToSystemSpacingBelow: contentView.layoutMarginsGuide.topAnchor, multiplier: 1),
-            titleLabel.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor, constant: 16),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8)]
+            titleLabel.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor, constant: Spacing.default),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Spacing.small)]
         
         let authorLabelConstraints = [
             authorLabel.firstBaselineAnchor.constraint(equalToSystemSpacingBelow: titleLabel.lastBaselineAnchor, multiplier: 1),
             authorLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            authorLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            authorLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Spacing.small),
             contentView.layoutMarginsGuide.bottomAnchor.constraint(equalToSystemSpacingBelow: authorLabel.lastBaselineAnchor, multiplier: 4)]
         
         let starLabelConstraints = [
-            starCountLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            starCountLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Spacing.default),
             contentView.layoutMarginsGuide.bottomAnchor.constraint(equalToSystemSpacingBelow: starCountLabel.lastBaselineAnchor, multiplier: 1)]
         
         let starIconConstraints = [
             starIcon.centerYAnchor.constraint(equalTo: starCountLabel.centerYAnchor, constant: -1),
-            starIcon.trailingAnchor.constraint(equalTo: starCountLabel.leadingAnchor, constant: -4)]
+            starIcon.trailingAnchor.constraint(equalTo: starCountLabel.leadingAnchor, constant: -Spacing.extraSmall)]
         
         NSLayoutConstraint.activate([
             avatarConstraints,
