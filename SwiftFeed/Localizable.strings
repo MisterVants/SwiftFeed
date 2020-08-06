@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  SwiftFeed
+
+  Created by André Vants Soares de Almeida on 05/08/20.
+  
+*/
+
+"navbar.title" = "Swift Feed";
+"loading" = "Loading...";
+
+"error.title" = "Take it easy, mah boi!!";
+"error.message" = "Go grab some coffee before scrolling this much again.";
+"error.action" = "Cool!";
