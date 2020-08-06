@@ -15,15 +15,24 @@ enum HTTPStatusCode {
 
 struct Response<T: Decodable> {
 
+    /// The final result of the request, containing either a decoded model or an error.
     let result: Result<T, Error>
+    
+    /// The raw data that returned in a response.
     let data: Data?
+    
+    /// The request associated with the response.
     let request: URLRequest?
+    
+    /// The response that returned from the URL load request as a URLResponse.
     let urlResponse: URLResponse?
     
+    /// The response that returned from the URL load request as a HTTPURLResponse.
     var httpResponse: HTTPURLResponse? {
         urlResponse as? HTTPURLResponse
     }
     
+    /// All HTTP header fields associated with the response.
     var httpHeaders: [AnyHashable : Any] {
         httpResponse?.allHeaderFields ?? [:]
     }

@@ -5,6 +5,9 @@
 //  Created by André Vants Soares de Almeida on 05/08/20.
 //
 
+/**
+ A namespace containing constant information related to the Search API.
+ */
 enum SearchAPI {
     
     typealias Endpoint = SearchEndpoint

@@ -8,6 +8,19 @@
 import Foundation
 
 protocol SearchService {
+    
+    /**
+     Query GitHub Search API for repositories matching a given query.
+     
+     - Parameters:
+        - query: The query string to be matched.
+        - sortRule:The rule specifying by which attribute the results should be sorted.
+        - order: Tells whether the results should be sorted ascending of descending.
+        - page: The page index for the query results, taking in account the number of results per page that is being requested.
+        - resultsPerPage: How many results should return from the request. GitHub's default is 30 and maximum is 100.
+        - completion: A completion handler that returns a result containing either a list of Repositories or an Error.
+     - Returns: A cancellable token of the request.
+     */
     func getRepositories(
         matching query: String,
         sortBy sortingRule: SearchAPI.Sorting.Repository?,

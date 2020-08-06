@@ -8,7 +8,24 @@
 import Foundation
 
 protocol PageFeedDelegate: AnyObject {
+    
+    /**
+     Tells the delegate that a new page of items was loaded and added into the feed.
+     
+     - parameters:
+        - feed: The feed object that is informing the delegate about an update.
+        - indexPaths: The index paths values for all items that were added to the feed.
+        - pageIndex: The index number for the page of results that was loaded.
+     */
     func pageFeed(_ feed: PageFeed, didLoadNewItemsAt indexPaths: [IndexPath], onPage pageIndex: Int)
+    
+    /**
+     Tells the delegate that an error happened while loading a new page of items.
+     
+     - parameters:
+        - feed: The feed object that is informing the delegate about an error.
+        - error: The error object containing the reason why new items could not be loaded.
+     */
     func pageFeed(_ feed: PageFeed, didFailLoadingWithError error: Error)
 }
 

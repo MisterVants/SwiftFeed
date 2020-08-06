@@ -5,8 +5,8 @@
 //  Created by André Vants Soares de Almeida on 05/08/20.
 //
 
-// Only the repositories endpoint is being used. The other cases were added as an
-// example that can be followed in the same style as the list of endpoints grows.
+// NOTE: Only the repositories endpoint is being used. The other cases were added as an
+// example that can be followed in the same style to add more API endpoints.
 
 enum SearchEndpoint {
     case repositories(matching: String?, sort: String?, order: String?, pagination: Pagination?)
